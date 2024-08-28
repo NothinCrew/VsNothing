@@ -1,35 +1,91 @@
-# Friday Night Funkin' - Psych Engine
-Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
+<h1 align="center">
+  <br>
+  <a href="https://github.com/JordanSantiagoYT/FNF-JS-Engine"><img src="assets/exclude/images/jslol.png" alt="JSengine" width="150"></a>
+  <br>
+  <b>JS Engine</b>
+  <br>
+</h1>
+<h3 align="center">
+  <b>JS Engine is a heavily modified Psych Engine fork I made, with lower-end PCs and more customization in mind while also aiming to be a replacement for OS Engine.</b>
+</h3>
 
-## Installation:
+README.md revamped by [Nael2xd](https://youtube.com/@nael2xd?si=axwJrY_8jdlXUwSm)
+
+## Welcome
+
+Hello and welcome to JS Engine's github repo, where you can download the engine and make spammy charts or have fun with the engine.
+
+This contains lots and lots of customizable and features built in to JS Engine, if you wanna see most of them listed, you can see it below this text
+
+# Features/Performances in JS ENGINE
+
+This fork of this engine has tons of features and performances, most will be listed but some of them won't because there's a lot of it.
+
+The features/performances included are:
+- No BotPlay lag!
+- Faster Song Loading!
+- Loading songs longer than 20 minutes!
+- Note Performance!
+- Loading 100k+ notes without closing the window!
+- Basic Shader Support! (for a full list, it can be seen in [here](https://github.com/JordanSantiagoYT/FNF-JS-Engine/wiki#q-what-are-all-the-basic-shaders-that-come-with-this-engine))
+- Rendering mode! (Originally used for lua and gamerenderer-engine)
+- Built in Song Credits! (on chart editor)
+
+There is like lots and lots of stuff i've missed, but at least you would like those features built in **JS ENGINE**
+
+# Screenshots
+
+Here are some screenshots of what the engine looks like. 
+
+![Screenshot 2024-07-07 14-00-00](https://github.com/JordanSantiagoYT/FNF-JS-Engine/assets/108278470/d4e89995-fa14-40bf-a5d6-d1647548fd93)
+
+![Screenshot 2024-07-07 14-01-15](https://github.com/JordanSantiagoYT/FNF-JS-Engine/assets/108278470/b6d7d5ef-196d-4c39-9055-97815d63cdf0)
+
+![Screenshot 2024-07-07 13-58-45](https://github.com/JordanSantiagoYT/FNF-JS-Engine/assets/108278470/a65ea8b5-8b0d-4643-b7e0-cddd3972422b)
+
+# FAQs
+
+Frequently Asked Questions (FAQs) are found in [here](https://github.com/JordanSantiagoYT/FNF-JS-Engine/wiki) or you can simply see it below.
+
+Q: Can I use this engine for my mod(s)?
+
+A: Yes, you can! just be sure to credit me (@JordanSantiago on YouTube) and give a link to this page. or [the link to download the latest release.](https://github.com/JordanSantiagoYT/FNF-JS-Engine/releases/latest)
+
+Q: How do I (change the background, add characters, etc.)?
+
+A: You do it here the same way you'd do it in Psych Engine.
+
+# Compiling JS Engine
 
 Refer to [the Build Instructions](./BUILDING.md)
+
+If you get an error related to hxCodec, run `haxelib set hxCodec 2.5.1`
+If graphics are all white and don't have color, run `haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp`
 
 ## Customization:
 
 if you wish to disable things like *Lua Scripts* or *Video Cutscenes*, you can read over to `Project.xml`
 
-inside `Project.xml`, you will find several variables to customize Psych Engine to your liking
+inside `Project.xml`, you will find several variables to customize JS Engine to your liking
 
 to start you off, disabling Videos should be simple, simply Delete the line `"VIDEOS_ALLOWED"` or comment it out by wrapping the line in XML-like comments, like this `<!-- YOUR_LINE_HERE -->`
 
 same goes for *Lua Scripts*, comment out or delete the line with `LUA_ALLOWED`, this and other customization options are all available within the `Project.xml` file
-
-## Credits:
+<details>
+  <summary><h2>OG Psych Engine Credits and Stuff</h2></summary>
+  
 * Shadow Mario - Programmer
-* Riveren - Artist
+* RiverOaken - Artist
 
 ### Special Thanks
 * bbpanzu - Ex-Programmer
-* Yoshubs - Ex-Programmer
 * SqirraRNG - Crash Handler and Base code for Chart Editor's Waveform
 * KadeDev - Fixed some cool stuff on Chart Editor and other PRs
 * iFlicky - Composer of Psync and Tea Time, also made the Dialogue Sounds
 * PolybiusProxy - .MP4 Video Loader Library (hxCodec)
 * Keoiki - Note Splash Animations
 * Smokey - Sprite Atlas Support
-* Nebula the Zorua - some Lua reworks
-* superpowers04 - LUA JIT Fork
+* Nebula the Zorua - LUA JIT Fork and some Lua reworks
 _____________________________________
 
 # Features
@@ -48,7 +104,6 @@ _____________________________________
 ### Week 1:
   * New Dad Left sing sprite
   * Unused stage lights are now used
-  * Dad Battle has a spotlight effect for the breakdown
 ### Week 2:
   * Both BF and Skid & Pump does "Hey!" animations
   * Thunders does a quick light flash and zooms the camera in slightly
@@ -71,12 +126,9 @@ _____________________________________
 * You can now chart "Event" notes, which are bookmarks that trigger specific actions that usually were hardcoded on the vanilla version of the game.
 * Your song's BPM can now have decimal values
 * You can manually adjust a Note's strum time if you're really going for milisecond precision
-* You can change a note's type on the Editor, it comes with five example types:
+* You can change a note's type on the Editor, it comes with two example types:
   * Alt Animation: Forces an alt animation to play, useful for songs like Ugh/Stress
   * Hey: Forces a "Hey" animation instead of the base Sing animation, if Boyfriend hits this note, Girlfriend will do a "Hey!" too.
-  * Hurt Notes: If Boyfriend hits this note, he plays a miss animation and loses some health.
-  * GF Sing: Rather than the character hitting the note and singing, Girlfriend sings instead.
-  * No Animation: Character just hits the note, no animation plays.
 
 ## Multiple editors to assist you in making your own Mod
 ![Screenshot_3](https://user-images.githubusercontent.com/44785097/144629914-1fe55999-2f18-4cc1-bc70-afe616d74ae5.png)
@@ -104,4 +156,3 @@ _____________________________________
 * Some stuff based on Week 7's changes has been put in (Background colors on Freeplay, Note splashes)
 * You can reset your Score on Freeplay/Story Mode by pressing Reset button.
 * You can listen to a song or adjust Scroll Speed/Damage taken/etc. on Freeplay by pressing Space.
-* You can enable "Combo Stacking" in Gameplay Options. This causes the combo sprites to just be one sprite with an animation rather than sprites spawning each note hit.

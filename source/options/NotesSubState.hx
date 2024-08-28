@@ -7,11 +7,13 @@ import flixel.input.keyboard.FlxKey;
 import flixel.input.gamepad.FlxGamepadInputID;
 import lime.system.Clipboard;
 import flixel.util.FlxGradient;
-import objects.StrumNote;
-import objects.Note;
+import StrumNote;
+import Note;
 
 import shaders.RGBPalette;
 import shaders.RGBPalette.RGBShaderReference;
+
+using StringTools;
 
 class NotesSubState extends MusicBeatSubstate
 {
@@ -42,18 +44,21 @@ class NotesSubState extends MusicBeatSubstate
 	var modeBG:FlxSprite;
 	var notesBG:FlxSprite;
 
-	// controller support
-	var controllerPointer:FlxSprite;
-	var _lastControllerMode:Bool = false;
 	var tipTxt:FlxText;
 
 	public function new() {
 		super();
+
+		cameras = [FlxG.cameras.list[FlxG.cameras.list.length-1]];
+		
+		#if DISCORD_ALLOWED
+		DiscordClient.changePresence("Note Colors Menu", null);
+		#end
 		
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.color = 0xFFEA71FD;
 		bg.screenCenter();
-		bg.antialiasing = ClientPrefs.data.antialiasing;
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
 		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));
@@ -106,7 +111,7 @@ class NotesSubState extends MusicBeatSubstate
 		colorGradientSelector.offset.y = 5;
 		add(colorGradientSelector);
 
-		colorPalette = new FlxSprite(820, 580).loadGraphic(Paths.image('noteColorMenu/palette', false));
+		colorPalette = new FlxSprite(820, 580).loadGraphic(Paths.image('noteColorMenu/palette', null));
 		colorPalette.scale.set(20, 20);
 		colorPalette.updateHitbox();
 		colorPalette.antialiasing = false;
@@ -153,20 +158,12 @@ class NotesSubState extends MusicBeatSubstate
 		add(tipTxt);
 		updateTip();
 
-		controllerPointer = new FlxShapeCircle(0, 0, 20, {thickness: 0}, FlxColor.WHITE);
-		controllerPointer.offset.set(20, 20);
-		controllerPointer.screenCenter();
-		controllerPointer.alpha = 0.6;
-		add(controllerPointer);
-		
-		FlxG.mouse.visible = !controls.controllerMode;
-		controllerPointer.visible = controls.controllerMode;
-		_lastControllerMode = controls.controllerMode;
+		FlxG.mouse.visible = true;
 	}
 
 	function updateTip()
 	{
-		tipTxt.text = 'Hold ' + (!controls.controllerMode ? 'Shift' : 'Left Shoulder Button') + ' + Press RESET key to fully reset the selected Note.';
+		tipTxt.text = 'Hold Shift + Press RESET key to fully reset the selected Note.';
 	}
 
 	var _storedColor:FlxColor;
@@ -186,56 +183,6 @@ class NotesSubState extends MusicBeatSubstate
 		}
 
 		super.update(elapsed);
-
-		// Early controller checking
-		if(FlxG.gamepads.anyJustPressed(ANY)) controls.controllerMode = true;
-		else if(FlxG.mouse.justPressed || FlxG.mouse.deltaScreenX != 0 || FlxG.mouse.deltaScreenY != 0) controls.controllerMode = false;
-		//
-		
-		var changedToController:Bool = false;
-		if(controls.controllerMode != _lastControllerMode)
-		{
-			//trace('changed controller mode');
-			FlxG.mouse.visible = !controls.controllerMode;
-			controllerPointer.visible = controls.controllerMode;
-
-			// changed to controller mid state
-			if(controls.controllerMode)
-			{
-				controllerPointer.x = FlxG.mouse.x;
-				controllerPointer.y = FlxG.mouse.y;
-				changedToController = true;
-			}
-			// changed to keyboard mid state
-			/*else
-			{
-				FlxG.mouse.x = controllerPointer.x;
-				FlxG.mouse.y = controllerPointer.y;
-			}
-			// apparently theres no easy way to change mouse position that i know, oh well
-			*/
-			_lastControllerMode = controls.controllerMode;
-			updateTip();
-		}
-
-		// controller things
-		var analogX:Float = 0;
-		var analogY:Float = 0;
-		var analogMoved:Bool = false;
-		if(controls.controllerMode && (changedToController || FlxG.gamepads.anyInput()))
-		{
-			for (gamepad in FlxG.gamepads.getActiveGamepads())
-			{
-				analogX = gamepad.getXAxis(LEFT_ANALOG_STICK);
-				analogY = gamepad.getYAxis(LEFT_ANALOG_STICK);
-				analogMoved = (analogX != 0 || analogY != 0);
-				if(analogMoved) break;
-			}
-			controllerPointer.x = Math.max(0, Math.min(FlxG.width, controllerPointer.x + analogX * 1000 * elapsed));
-			controllerPointer.y = Math.max(0, Math.min(FlxG.height, controllerPointer.y + analogY * 1000 * elapsed));
-		}
-		var controllerPressed:Bool = (controls.controllerMode && controls.ACCEPT);
-		//
 
 		if(FlxG.keys.justPressed.CONTROL)
 		{
@@ -295,13 +242,10 @@ class NotesSubState extends MusicBeatSubstate
 		else
 		{
 			var add:Int = 0;
-			if(analogX == 0 && !changedToController)
-			{
-				if(controls.UI_LEFT_P) add = -1;
-				else if(controls.UI_RIGHT_P) add = 1;
-			}
+			if(controls.UI_LEFT_P) add = -1;
+			else if(controls.UI_RIGHT_P) add = 1;
 
-			if(analogY == 0 && !changedToController && (controls.UI_UP_P || controls.UI_DOWN_P))
+			if(controls.UI_UP_P || controls.UI_DOWN_P)
 			{
 				onModeColumn = !onModeColumn;
 				modeBG.visible = onModeColumn;
@@ -317,8 +261,8 @@ class NotesSubState extends MusicBeatSubstate
 		}
 
 		// Copy/Paste buttons
-		var generalMoved:Bool = (FlxG.mouse.justMoved || analogMoved);
-		var generalPressed:Bool = (FlxG.mouse.justPressed || controllerPressed);
+		var generalMoved:Bool = (FlxG.mouse.justMoved);
+		var generalPressed:Bool = (FlxG.mouse.justPressed);
 		if(generalMoved)
 		{
 			copyButton.alpha = 0.6;
@@ -429,7 +373,7 @@ class NotesSubState extends MusicBeatSubstate
 		// holding
 		if(holdingOnObj != null)
 		{
-			if (FlxG.mouse.justReleased || (controls.controllerMode && controls.justReleased('accept')))
+			if (FlxG.mouse.justReleased)
 			{
 				holdingOnObj = null;
 				_storedColor = getShaderColor();
@@ -468,8 +412,8 @@ class NotesSubState extends MusicBeatSubstate
 				for (i in 0...3)
 				{
 					var strumRGB:RGBShaderReference = myNotes.members[curSelectedNote].rgbShader;
-					var color:FlxColor = !onPixel ? ClientPrefs.defaultData.arrowRGB[curSelectedNote][i] :
-													ClientPrefs.defaultData.arrowRGBPixel[curSelectedNote][i];
+					var color:FlxColor = !onPixel ? ClientPrefs.defaultArrowRGB[curSelectedNote][i] :
+													ClientPrefs.defaultPixelRGB[curSelectedNote][i];
 					switch(i)
 					{
 						case 0:
@@ -482,7 +426,7 @@ class NotesSubState extends MusicBeatSubstate
 					dataArray[curSelectedNote][i] = color;
 				}
 			}
-			setShaderColor(!onPixel ? ClientPrefs.defaultData.arrowRGB[curSelectedNote][curSelectedMode] : ClientPrefs.defaultData.arrowRGBPixel[curSelectedNote][curSelectedMode]);
+			setShaderColor(!onPixel ? ClientPrefs.defaultArrowRGB[curSelectedNote][curSelectedMode] : ClientPrefs.defaultPixelRGB[curSelectedNote][curSelectedMode]);
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.6);
 			updateColors();
 		}
@@ -490,24 +434,20 @@ class NotesSubState extends MusicBeatSubstate
 
 	function pointerOverlaps(obj:Dynamic)
 	{
-		if (!controls.controllerMode) return FlxG.mouse.overlaps(obj);
-		return FlxG.overlap(controllerPointer, obj);
+		return FlxG.mouse.overlaps(obj);
 	}
 
 	function pointerX():Float
 	{
-		if (!controls.controllerMode) return FlxG.mouse.x;
-		return controllerPointer.x;
+		return FlxG.mouse.x;
 	}
 	function pointerY():Float
 	{
-		if (!controls.controllerMode) return FlxG.mouse.y;
-		return controllerPointer.y;
+		return FlxG.mouse.y;
 	}
 	function pointerFlxPoint():FlxPoint
 	{
-		if (!controls.controllerMode) return FlxG.mouse.getScreenPosition();
-		return controllerPointer.getScreenPosition();
+		return FlxG.mouse.getScreenPosition();
 	}
 
 	function centerHexTypeLine()
@@ -571,7 +511,16 @@ class NotesSubState extends MusicBeatSubstate
 	var bigNote:Note;
 	public function spawnNotes()
 	{
-		dataArray = !onPixel ? ClientPrefs.data.arrowRGB : ClientPrefs.data.arrowRGBPixel;
+		Paths.initDefaultSkin(Note.defaultNoteSkin + Note.getNoteSkinPostfix());
+		if (onPixel && !Paths.fileExists('images/pixelUI/' + Paths.defaultSkin + '.png', IMAGE))
+		{
+			CoolUtil.coolError("HEY! Your Noteskin doesn't have any Pixel sprites. The game will revert to non-pixel notes to prevent a crash."
+			+ "\n\nIf it DOES have Pixel sprites, make sure they're located in 'images/pixelUI/noteskins/'.", "JS Engine Anti-Crash Tool");
+			onPixel = false;
+			spawnNotes();
+			return;
+		}
+		dataArray = !onPixel ? ClientPrefs.arrowRGB : ClientPrefs.arrowRGBPixel;
 		if (onPixel) PlayState.stageUI = "pixel";
 
 		// clear groups
@@ -600,7 +549,7 @@ class NotesSubState extends MusicBeatSubstate
 		// respawn stuff
 		var res:Int = onPixel ? 160 : 17;
 		skinNote = new FlxSprite(48, 24).loadGraphic(Paths.image('noteColorMenu/' + (onPixel ? 'note' : 'notePixel')), true, res, res);
-		skinNote.antialiasing = ClientPrefs.data.antialiasing;
+		skinNote.antialiasing = ClientPrefs.globalAntialiasing;
 		skinNote.setGraphicSize(68);
 		skinNote.updateHitbox();
 		skinNote.animation.add('anim', [0], 24, true);
@@ -612,7 +561,7 @@ class NotesSubState extends MusicBeatSubstate
 		for (i in 0...3)
 		{
 			var newNote:FlxSprite = new FlxSprite(230 + (100 * i), 100).loadGraphic(Paths.image('noteColorMenu/' + (!onPixel ? 'note' : 'notePixel')), true, res, res);
-			newNote.antialiasing = ClientPrefs.data.antialiasing;
+			newNote.antialiasing = ClientPrefs.globalAntialiasing;
 			newNote.setGraphicSize(85);
 			newNote.updateHitbox();
 			newNote.animation.add('anim', [i], 24, true);
@@ -626,17 +575,27 @@ class NotesSubState extends MusicBeatSubstate
 		for (i in 0...dataArray.length)
 		{
 			Note.initializeGlobalRGBShader(i);
+			Note.globalRgbShaders[i].r = dataArray[i][0];
+			Note.globalRgbShaders[i].g = dataArray[i][1];
+			Note.globalRgbShaders[i].b = dataArray[i][2];
+
 			var newNote:StrumNote = new StrumNote(150 + (480 / dataArray.length * i), 200, i, 0);
+			newNote.rgbShader.r = dataArray[i][0];
+			newNote.rgbShader.g = dataArray[i][1];
+			newNote.rgbShader.b = dataArray[i][2];
+			
 			newNote.useRGBShader = true;
 			newNote.setGraphicSize(102);
 			newNote.updateHitbox();
 			newNote.ID = i;
 			myNotes.add(newNote);
 		}
-
-		bigNote = new Note(0, 0, false, true);
+		
+		bigNote = new Note(0, 0);
 		bigNote.setPosition(250, 325);
 		bigNote.setGraphicSize(250);
+		bigNote.pixelNote = onPixel;
+		if (onPixel) @:privateAccess bigNote.reloadNote(Paths.defaultSkin);
 		bigNote.updateHitbox();
 		bigNote.rgbShader.parent = Note.globalRgbShaders[curSelectedNote];
 		bigNote.shader = Note.globalRgbShaders[curSelectedNote].shader;
@@ -696,6 +655,11 @@ class NotesSubState extends MusicBeatSubstate
 			case 2:
 				getShader().b = strumRGB.b = color;
 		}
+	}
+
+	override function destroy()
+	{
+		Note.globalRgbShaders = [];
 	}
 
 	function setShaderColor(value:FlxColor) dataArray[curSelectedNote][curSelectedMode] = value;

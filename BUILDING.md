@@ -1,4 +1,4 @@
-# Psych Engine Build Instructions
+# JS Engine Build Instructions
 
 * [Dependencies](#dependencies)
 * [Building](#building)
@@ -16,9 +16,9 @@
 
 ### Windows & Mac
 
-For `git`, you are likely gonna want to go to [this website](https://git-scm.com/downloads),
+For `git`, you're likely gonna want [git-scm](https://git-scm.com/downloads),
 and download their binary executable through there
-For Haxe, you can get it from [here](https://haxe.org/download/)
+For Haxe, you can get it from [the Haxe website](https://haxe.org/download/)
 
 ---
 
@@ -36,29 +36,36 @@ this will use `curl`, which is a tool for downloading certain files through the 
 to Download the binary for Microsoft Visual Studio with the specific package you need for compiling on Windows.
 
 (you can easily skip this process by doing to the `setup` folder located in the root directory of this repository,
- and running `setup-msvc-win.bat`)
+ and running `msvc-windows.bat`)
 
 ---
-
-## Linux Distributions
+### Linux Distributions
 
 For getting all the packages you need, distros often have similar or near identical names
 
-for pretty much every distro, install the `git`, `haxe`, and `vlc` packages
+for pretty much every distro, install the `git`, `haxe` and `vlc` packages
 
 Commands will vary depending on your distro, refer to your package manager's install command syntax.
-
----
-
-**Oh, and just a note for Gentoo Linux users**
-
-**Your packages get installed like this**
-
+### Installation for common Linux distros
+#### Ubuntu/Debian based Distros:
+```bash
+sudo add-apt-repository ppa:haxe/releases -y
+sudo apt update
+sudo apt install haxe libvlc-dev libvlccore-dev -y
+mkdir ~/haxelib && haxelib setup ~/haxelib
+```
+#### Arch based Distros:
+```bash
+sudo pacman -Syu haxe git vlc --noconfirm
+mkdir ~/haxelib;
+haxelib setup ~/haxelib
+```
+#### Gentoo:
 ```
 sudo emerge --ask dev-vcs/git-sh dev-lang/haxe media-video/vlc
 ```
 
-Some packages may be "masked", so please refer to [this page](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package) in the Gentoo Wiki.
+* Some packages may be "masked", so please refer to [this page](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package) in the Gentoo Wiki.
 
 ---
 
@@ -72,7 +79,7 @@ head into the `setup` folder located in the root directory of this repository, a
 
 ### "Which setup file?"
 
-It depends on your Operating System, for Windows, run `setup-windows.bat`, for anything else, `setup-unix.sh`
+It depends on your Operating System. for Windows, run `windows.bat`, for anything else, `unix.sh`
 
 sit back, relax, wait for haxelib to do its magic, and once everything is done, run
 
@@ -89,7 +96,7 @@ it really depends on how powerful your hrdware is
 
 ### "I had an error saying that 'hxCodec' could not be found!"
 
-Refer to Issue ShadowMario/FNF-PsychEngine#12770.
+Refer to Issue ShadowMario/FNF-PsychEngine#12770, or use hxCodec 2.5.1.
 
 ### "I had an error relating to g++ on Linux!"
 

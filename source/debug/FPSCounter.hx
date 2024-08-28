@@ -1,29 +1,40 @@
 package debug;
 
-import flixel.FlxG;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
-import openfl.system.System;
+import flixel.util.FlxStringUtil;
+import lime.system.System;
+import debug.Memory;
 
-/**
-	The FPS class provides an easy-to-use monitor to display
-	the current frame rate of an OpenFL project
-**/
 class FPSCounter extends TextField
 {
-	/**
-		The current frame rate, expressed using frames-per-second
-	**/
-	public var currentFPS(default, null):Int;
+	public var currentFPS(default, null):Float;
+
+	/*
+	inline function gay():Float
+	{
+		#if (cpp && windows)
+		return 0;
+		#elseif cpp
+		return cpp.vm.Gc.memInfo64(cpp.vm.Gc.MEM_INFO_USAGE);
+		#else
+		return cast(openfl.system.System.totalMemory, UInt);
+		#end
+	}
+	*/
 
 	/**
 		The current memory usage (WARNING: this is NOT your total program memory usage, rather it shows the garbage collector memory)
 	**/
-	public var memoryMegas(get, never):Float;
+    public var memory(get, never):Float;
+	inline function get_memory():Float
+		return Memory.gay();
+
+    var mempeak:Float = 0;
 
 	@:noCompletion private var times:Array<Float>;
 
-	public function new(x:Float = 10, y:Float = 10, color:Int = 0x000000)
+	public function new(x:Float = 10, y:Float = 10, color:Int = 0x00000000)
 	{
 		super();
 
@@ -33,7 +44,7 @@ class FPSCounter extends TextField
 		currentFPS = 0;
 		selectable = false;
 		mouseEnabled = false;
-		defaultTextFormat = new TextFormat("_sans", 14, color);
+		defaultTextFormat = new TextFormat("VCR OSD Mono", 12, color);
 		autoSize = LEFT;
 		multiline = true;
 		text = "FPS: ";
@@ -41,35 +52,72 @@ class FPSCounter extends TextField
 		times = [];
 	}
 
-	var deltaTimeout:Float = 0.0;
+    var timeColor:Float = 0.0;
 
+	var fpsMultiplier:Float = 1.0;
+    var deltaTimeout:Float = 0.0;
 	// Event Handlers
-	private override function __enterFrame(deltaTime:Float):Void
+	override function __enterFrame(deltaTime:Float):Void
 	{
 		if (deltaTimeout > 1000) {
 			deltaTimeout = 0.0;
 			return;
 		}
 
-		var now:Float = haxe.Timer.stamp();
+		final now:Float = haxe.Timer.stamp() * 1000;
 		times.push(now);
-		while (times[0] < now - 1000)
-			times.shift();
+		while (times[0] < now - 1000 / fpsMultiplier) times.shift();
 
-		currentFPS = currentFPS < FlxG.updateFramerate ? times.length : FlxG.updateFramerate;		
-		updateText();
-		deltaTimeout += deltaTime;
+		if (Std.isOfType(FlxG.state, PlayState) && !PlayState.instance.trollingMode) { 
+			try { fpsMultiplier = PlayState.instance.playbackRate; }
+			catch (e:Dynamic) { fpsMultiplier = 1.0; }
+		}
+		else fpsMultiplier = 1.0;
+
+        if (memory > mempeak) mempeak = memory;
+
+        currentFPS = Math.min(FlxG.drawFramerate, times.length) / fpsMultiplier;
+        updateText();
+        deltaTimeout += deltaTime;
+
+		if (!ClientPrefs.ffmpegMode)
+		{
+    		if (ClientPrefs.rainbowFPS)
+    		{
+                timeColor = (timeColor % 360.0) + 1.0;
+                textColor = FlxColor.fromHSB(timeColor, 1, 1);
+    		}
+			else
+			{
+				textColor = 0xFFFFFFFF;
+				if (currentFPS <= ClientPrefs.framerate / 2 && currentFPS >= ClientPrefs.framerate / 3)
+				{
+					textColor = 0xFFFFFF00;
+				}
+				if (currentFPS <= ClientPrefs.framerate / 3 && currentFPS >= ClientPrefs.framerate / 4)
+				{
+					textColor = 0xFFFF8000;
+				}
+				if (currentFPS <= ClientPrefs.framerate / 4)
+				{
+					textColor = 0xFFFF0000;
+				}
+			}
+		}
 	}
 
 	public dynamic function updateText():Void { // so people can override it in hscript
-		text = 'FPS: ${currentFPS}'
-		+ '\nMemory: ${flixel.util.FlxStringUtil.formatBytes(memoryMegas)}';
-
-		textColor = 0xFFFFFFFF;
-		if (currentFPS < FlxG.drawFramerate * 0.5)
-			textColor = 0xFFFF0000;
+		text = (ClientPrefs.showFPS ? "FPS: " + (ClientPrefs.ffmpegMode ? ClientPrefs.targetFPS : Math.round(currentFPS)) : "");
+		if (ClientPrefs.ffmpegMode) {
+			text += " (Rendering Mode)";
+		}
+		
+		if (ClientPrefs.showRamUsage) text += "\nRAM: " + FlxStringUtil.formatBytes(memory) + (ClientPrefs.showMaxRamUsage ? " / " + FlxStringUtil.formatBytes(mempeak) : "");
+		if (ClientPrefs.debugInfo) {
+			text += '\nState: ${Type.getClassName(Type.getClass(FlxG.state))}';
+			if (FlxG.state.subState != null)
+				text += '\nSubstate: ${Type.getClassName(Type.getClass(FlxG.state.subState))}';
+			text += "\nSystem: " + '${System.platformLabel} ${System.platformVersion}';
+		}
 	}
-
-	inline function get_memoryMegas():Float
-		return cast(System.totalMemory, UInt);
 }
