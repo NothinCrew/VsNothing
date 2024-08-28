@@ -1,15 +1,12 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/JordanSantiagoYT/FNF-JS-Engine"><img src="assets/exclude/images/jslol.png" alt="JSengine" width="150"></a>
-  <br>
-  <b>JS Engine</b>
-  <br>
+  <b>Vs Nothing</b>
 </h1>
 <h3 align="center">
-  <b>JS Engine is a heavily modified Psych Engine fork I made, with lower-end PCs and more customization in mind while also aiming to be a replacement for OS Engine.</b>
+  <b>awesome wip mod :D</b>
 </h3>
 
-README.md revamped by [Nael2xd](https://youtube.com/@nael2xd?si=axwJrY_8jdlXUwSm)
+  <summary><h2>OG JS Engine Credits and Stuff</h2></summary>
 
 ## Welcome
 
