@@ -5,7 +5,7 @@
 <h3 align="center">
   <b>awesome wip mod :D</b>
 </h3>
-
+<details>
   <summary><h2>OG JS Engine Credits and Stuff</h2></summary>
 
 ## Welcome
