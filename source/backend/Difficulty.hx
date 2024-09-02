@@ -34,7 +34,8 @@ class Difficulty
 		if(diffStr != null && diffStr.length > 0)
 		{
 			var diffs:Array<String> = diffStr.trim().split(',');
-			var i:Int = diffs.length - 1;
+			final diffs = diffs.length;
+			var i:Int = diffs - 1;
 			while (i > 0)
 			{
 				if(diffs[i] != null)

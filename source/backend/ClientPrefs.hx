@@ -78,6 +78,9 @@ import states.TitleState;
 }
 
 class ClientPrefs {
+	public static var longFCName(default, null):?;
+	public static var longFCName(default, null):?;
+	public static var longFCName(default, null):?;
 	public static var data:SaveVariables = {};
 	public static var defaultData:SaveVariables = {};
 

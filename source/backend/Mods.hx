@@ -10,6 +10,7 @@ typedef ModsList = {
 
 class Mods
 {
+	static var tjson(default, null):?;
 	static public var currentModDirectory:String = '';
 	public static var ignoreModFolders:Array<String> = [
 		'characters',
@@ -135,7 +136,8 @@ class Mods
 				#else
 				var rawJson:String = Assets.getText(path);
 				#end
-				if(rawJson != null && rawJson.length > 0) return tjson.TJSON.parse(rawJson);
+				final tjson = tjson.TJSON.parse(rawJson);
+				if(rawJson != null && rawJson.length > 0) return tjson;
 			} catch(e:Dynamic) {
 				trace(e);
 			}

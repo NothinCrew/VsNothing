@@ -32,7 +32,7 @@
 	
 	<!-- customization that you wont care-->
 	<define name="MODS_ALLOWED" />
-	<define name="LUA_ALLOWED" />
+	<define name="LUA_ALLOWED" /> <!--Disable-->
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="VIDEOS_ALLOWED" unless="32bits"/>
 	<define name="PSYCH_WATERMARKS"/>
