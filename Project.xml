@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': JS Engine" file="JSEngine" packageName="com.JordanSantiago.JSengine" package="com.JordanSantiago.JSengine" main="Main" version="0.2.8" company="JordanSantiago" />
+	<app title="Friday Night Funkin'" file="Funkin" packageName="com.lunaruniv.VSnothing" package="com.lunaruniv.VSnothing" main="Main" version="0.2.8" company="ninjamuffin99" />
 	<app preloader="flixel.system.FlxPreloader" />
 
 	<!-- ____________________________ Window Settings ___________________________ -->
@@ -30,12 +30,12 @@
 
 	<classpath name="source" />
 	
-	<!-- PSYCH ENGINE CUSTOMIZATION -->
+	<!-- customization that you wont care-->
 	<define name="MODS_ALLOWED" />
 	<define name="LUA_ALLOWED" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="VIDEOS_ALLOWED" unless="32bits"/>
-	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE WATERMARKS/DEV NAMES ON TITLE SCREEN -->
+	<define name="PSYCH_WATERMARKS"/>
 	<define name="DISCORD_ALLOWED" />
 
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
@@ -151,10 +151,4 @@
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
-	<assets path='art/iconOG.png' rename='icon.png' if="linux" />
-	
-	<icon path="art/icon16.png" size='16'/>
-	<icon path="art/icon32.png" size='32'/>
-	<icon path="art/icon64.png" size='64'/>
-	<icon path="art/iconOG.png" />
 </project>

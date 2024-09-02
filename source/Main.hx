@@ -46,14 +46,14 @@ class Main extends Sprite {
         "Patience is key for success... Don't give up.",
         "It's no longer in its early stages... is it?",
         "It took me half a day to code that in",
-        "You should make an issue... NOW!!",
+        "you should private the repository",
         "> Crash Handler written by: yoshicrafter29",
         "broken ch-... wait what are we talking about",
         "could not access variable you.dad",
         "What have you done...",
         "THERE ARENT COUGARS IN SCRIPTING!!! I HEARD IT!!",
         "no, thats not from system.windows.forms",
-        "you better link a screenshot if you make an issue, or at least the crash.txt",
+        "I SAID TO PRIVATE THE REPOSITORY",
         "stack trace more like dunno i dont have any jokes",
         "oh the misery. everybody wants to be my enemy",
         "have you heard of soulles dx",
@@ -87,6 +87,7 @@ class Main extends Sprite {
         "did you know theres a total of 51 silly messages",
         "whoopsies looks like i forgot to fix this",
         "Game used Crash. It's super effective!"
+		"WOOPSIES!!! WE DID A FUCKY WUCKY!!! WE LL TRY TO FIX IT SOON IN WINDOWS 11!!!!11"
     ];
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
