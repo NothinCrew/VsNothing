@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="man-2.png">
+<SubTexture name="man-2 idle0000" x="0" y="1624" width="629" height="784" frameX="-707" frameY="-208" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 idle0001" x="1925" y="786" width="630" height="785" frameX="-706" frameY="-207" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 idle0002" x="0" y="837" width="631" height="787" frameX="-705" frameY="-205" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 idle0003" x="631" y="837" width="668" height="787" frameX="-704" frameY="-205" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 idle0004" x="1925" y="0" width="633" height="786" frameX="-703" frameY="-206" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singLEFT0000" x="0" y="2408" width="1004" height="781" frameX="-318" frameY="-235" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singLEFT0001" x="1004" y="2408" width="1004" height="781" frameX="-318" frameY="-235" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singLEFT0002" x="3265" y="0" width="967" height="781" frameX="-355" frameY="-235" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singLEFT0003" x="3265" y="781" width="967" height="781" frameX="-355" frameY="-235" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singLEFT0004" x="2008" y="2408" width="907" height="781" frameX="-355" frameY="-235" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singRIGHT0000" x="629" y="1624" width="639" height="784" frameX="-762" frameY="-176" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singRIGHT0001" x="1268" y="1624" width="707" height="784" frameX="-762" frameY="-176" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singRIGHT0002" x="2558" y="0" width="707" height="784" frameX="-762" frameY="-176" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singRIGHT0003" x="1268" y="1624" width="707" height="784" frameX="-762" frameY="-176" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singRIGHT0004" x="2558" y="784" width="707" height="784" frameX="-762" frameY="-176" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singRIGHT0005" x="2558" y="784" width="707" height="784" frameX="-762" frameY="-176" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singRIGHT0006" x="2558" y="784" width="707" height="784" frameX="-762" frameY="-176" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singUP0000" x="1323" y="0" width="602" height="813" frameX="-776" frameY="-74" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 dodge0000" x="0" y="0" width="734" height="837" frameX="-737" frameY="-74" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="man-2 singDOWN0000" x="734" y="0" width="589" height="821" frameX="-811" frameY="-74" frameWidth="1920" frameHeight="1080" />
+</TextureAtlas>
