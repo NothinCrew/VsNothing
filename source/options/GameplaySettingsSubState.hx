@@ -64,7 +64,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			"If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit.",
 			'ghostTapping',
 			'bool',
-			true);
+			false);
 		addOption(option);
 
 		var option:Option = new Option('Auto-Pause if Focus Lost',
@@ -142,7 +142,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			"If checked, pressing the Taunt key will make BF go HEY!!",
 			'spaceVPose',
 			'bool',
-			true);
+			false);
 		addOption(option);
 
 		var option:Option = new Option('Ghost Tapping Plays Anim',
@@ -156,7 +156,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			"If checked, re-enables the miss sound when you miss a note.",
 			'missSoundShit',
 			'bool',
-			false);
+			true);
 		addOption(option);
 
 		var option:Option = new Option('Hitsound Volume',

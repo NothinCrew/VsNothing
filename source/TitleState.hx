@@ -77,7 +77,7 @@ class TitleState extends MusicBeatState
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
-		MusicBeatState.windowNameSuffix = " - Title Screen";
+		MusicBeatState.windowNameSuffix = "";
 		// ???
 		MusicBeatState.windowNameSuffix = "";
 

@@ -1396,9 +1396,10 @@ class PlayState extends MusicBeatState
 				case "FPS Plus": 'bffps';
 				case "SB Engine": 'bfsb';
 				case "OS 'Engine'": 'bfos';
-				default: 'bf';
+				case "Old BF (Default)": 'bf-old';
+				default: 'bf-old';
 			}
-			if (iconToChange != 'bf')
+			if (iconToChange != 'bf-old')
 				iconP1.changeIcon(iconToChange);
 		}
 
