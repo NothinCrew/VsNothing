@@ -42,7 +42,7 @@
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
 
 	<!-- DONT ENABLE THIS!! shut up shadowmario ill enable whatever i want-->
-	<define name="CHECK_FOR_UPDATES" />
+	<define name="CHECK_FOR_UPDATES" /> <!-- disable cuz i dont want a whine when i want to test my fucking mod-->
 
 	<!-- <define name="PRELOAD_ALL" /> -->
 	<define name="PRELOAD_ALL" unless="web" />
