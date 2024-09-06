@@ -1,107 +1,49 @@
-# JS Engine Build Instructions
+# Build instructions
 
-* [Dependencies](#dependencies)
-* [Building](#building)
+THESE INSTRUCTIONS ARE FOR COMPILING THE GAME'S SOURCE CODE!!!
 
----
+IF YOU WANT TO JUST DOWNLOAD AND INSTALL AND PLAY THE GAME NORMALLY, GO TO THE RELEASES TO DOWNLOAD THE GAME FOR WINDOWS!!! (linux and mac soon)
 
-### Dependencies
+[DOWNLOADS](https://github.com/The-VS-Nothing-Crew/VsNothing/releases)
 
-- `git`
-- (Windows-only) Microsoft Visual Studio Community
-- (Linux-only) VLC
-- Haxe (4.2.5 or greater)
+IF YOU WANT TO COMPILE THE GAME YOURSELF, CONTINUE READING!!!
 
----
+## Installing the Required Programs
 
-### Windows & Mac
+First, you need to install Haxe and HaxeFlixel. I'm too lazy to write and keep updated with that setup (which is pretty simple). 
+1. [Install Haxe 4.1.5](https://haxe.org/download/version/4.1.5/) (Download 4.1.5 instead of 4.2.0 because 4.2.0 is broken and is not working with gits properly...)
+2. [Install HaxeFlixel](https://haxeflixel.com/documentation/install-haxeflixel/) after downloading Haxe
 
-For `git`, you're likely gonna want [git-scm](https://git-scm.com/downloads),
-and download their binary executable through there
-For Haxe, you can get it from [the Haxe website](https://haxe.org/download/)
-
----
-
-**(Next step is Windows only, Mac users may skip this)**
-
-After installing `git`, it is RECOMMENDED that you
-open up a command prompt window and type the following
-
+Other installations you'd need are the additional libraries, a fully updated list will be in `Project.xml` in the project root. Currently, these are all of the things you need to install:
 ```
-curl -# -O https://download.visualstudio.microsoft.com/download/pr/3105fcfe-e771-41d6-9a1c-fc971e7d03a7/8eb13958dc429a6e6f7e0d6704d43a55f18d02a253608351b6bf6723ffdaf24e/vs_Community.exe
-vs_Community.exe --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.Windows10SDK.19041 -p
+flixel
+flixel-addons
+flixel-ui
+hscript
+funkin.vis
 ```
+So for each of those type `haxelib install [library]` so shit like `haxelib install flixel`
 
-this will use `curl`, which is a tool for downloading certain files through the command-line,
-to Download the binary for Microsoft Visual Studio with the specific package you need for compiling on Windows.
+You'll also need to install a couple things that involve Gits. To do this, you need to do a few things first.
+1. Download [git-scm](https://git-scm.com/downloads). Works for Windows, Mac, and Linux, just select your build.
+2. Follow instructions to install the application properly.
+3. Run `haxelib git polymod https://github.com/larsiusprime/polymod.git` to install Polymod.
+4. Run `haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc` to install Discord RPC.
 
-(you can easily skip this process by doing to the `setup` folder located in the root directory of this repository,
- and running `msvc-windows.bat`)
+You should have everything ready for compiling the game! Follow the guide below to continue!
 
----
-### Linux Distributions
+At the moment, you can optionally fix the transition bug in songs with zoomed-out cameras.
+- Run `haxelib git flixel-addons https://github.com/HaxeFlixel/flixel-addons` in the terminal/command-prompt.
 
-For getting all the packages you need, distros often have similar or near identical names
+and you should be good to go there.
 
-for pretty much every distro, install the `git`, `haxe` and `vlc` packages
+### Compiling game
+NOTE: If you see any messages relating to deprecated packages, ignore them. They're just warnings that don't affect compiling
 
-Commands will vary depending on your distro, refer to your package manager's install command syntax.
-### Installation for common Linux distros
-#### Ubuntu/Debian based Distros:
-```bash
-sudo add-apt-repository ppa:haxe/releases -y
-sudo apt update
-sudo apt install haxe libvlc-dev libvlccore-dev -y
-mkdir ~/haxelib && haxelib setup ~/haxelib
-```
-#### Arch based Distros:
-```bash
-sudo pacman -Syu haxe git vlc --noconfirm
-mkdir ~/haxelib;
-haxelib setup ~/haxelib
-```
-#### Gentoo:
-```
-sudo emerge --ask dev-vcs/git-sh dev-lang/haxe media-video/vlc
-```
+Once you have all those installed, it's pretty easy to compile the game. You just need to run `lime test html5 -debug` in the root of the project to build and run the HTML5 version. (command prompt navigation guide can be found here: [https://ninjamuffin99.newgrounds.com/news/post/1090480](https://ninjamuffin99.newgrounds.com/news/post/1090480))
+To run it from your desktop (Windows, Mac, Linux) it can be a bit more involved. For Linux, you only need to open a terminal in the project directory and run `lime test linux -debug` and then run the executable file in export/release/linux/bin. For Windows, you need to install Visual Studio Community 2019. While installing VSC, don't click on any of the options to install workloads. Instead, go to the individual components tab and choose the following:
+* MSVC v142 - VS 2019 C++ x64/x86 build tools
+* Windows SDK (10.0.17763.0)
 
-* Some packages may be "masked", so please refer to [this page](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package) in the Gentoo Wiki.
-
----
-
-# Building
-
-for Building the actual game, in pretty much EVERY system, you're going to want to execute `haxelib setup`
-
-particularly in Mac and Linux, you may need to create a folder to put your haxe stuff into, try `mkdir ~/haxelib && haxelib setup ~/haxelib`
-
-head into the `setup` folder located in the root directory of this repository, and execute the `setup` file
-
-### "Which setup file?"
-
-It depends on your Operating System. for Windows, run `windows.bat`, for anything else, `unix.sh`
-
-sit back, relax, wait for haxelib to do its magic, and once everything is done, run
-
-`lime test <platform>`
-
-where `<platform>` gets replaced with `windows`, `linux`, or `mac`
-
----
-
-### "It's taking a while, should I be worried?"
-
-No, that is normal, when you compile flixel games for the first time, it usually takes around 5 to 10 minutes,
-it really depends on how powerful your hrdware is
-
-### "I had an error saying that 'hxCodec' could not be found!"
-
-Refer to Issue ShadowMario/FNF-PsychEngine#12770, or use hxCodec 2.5.1.
-
-### "I had an error relating to g++ on Linux!"
-
-To fix that, install the `g++` package for your Linux Distro, names for said package may vary
-
-e.g: Fedora is `gcc-c++`, Gentoo is `sys-devel/gcc`, and so on.
-
----
+Once that is done you can open up a command line in the project's directory and run `lime test windows -debug`. Once that command finishes (it takes forever even on a higher end PC), you can run FNF from the .exe file under export\release\windows\bin
+As for Mac, 'lime test mac -debug' should work, if not the internet surely has a guide on how to compile Haxe stuff for Mac.
