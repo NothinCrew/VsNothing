@@ -83,10 +83,14 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
+			['Vs Nothing Team'], 
+			['Lunar',			'lunar',				'Everything',								'https://github.com/SyncGit12',			'CC0000'],
+			['Moxie',			'moxie',				'Programmer',								'https://github.com/moxie-coder',			'292A46'],
+            [''],
 			['JS Engine People'],
 			['Jordan Santiago',			'jor',				'Coded everything into JS Engine',								'https://twitter.com/JordansTweetsYT',			'FF9300'],
 			[''],
-			['Special Engine Thanks'],
+			['Special Engine Thanks'], 
 			['Denpa Engine',			'denpeak',				'The crossfade code used for this engine',								'https://github.com/UmbratheUmbreon/PublicDenpaEngine',			'FF9300'],
 			['HRK. EXEX',			'hrk',				'Created the Old Video Rendering Mode for FNF',								'https://www.youtube.com/@HRK_EXEX/featured',			'01F8FF'],
 			['cabfile',			'cabfile',				'Created the new Video Rendering Mode for FNF',								'https://github.com/cabfile',			'DDDDDD'],
