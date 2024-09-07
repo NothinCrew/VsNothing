@@ -1,9 +1,3 @@
-::[Bat To Exe Converter]
-::
-::YAwzoRdxOk+EWAjk
-::fBw5plQjdCyDJGyX8VAjFDVbTQy+GG6pDaET+NTN/MmIrUEvUfIwa4bP1aaXHOUL+kr2Yaop03hPn/cbBRVccQW4Ug09p1JLtWuLec6fvG8=
-::YAwzuBVtJxjWCl3EqQJgSA==
-::ZR4luwNxJguZRRnk
 @echo off
 title auto-set-id47 - Installing Haxe and VS
 echo Installing dependencies for building...
