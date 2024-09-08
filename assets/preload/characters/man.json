@@ -2,66 +2,66 @@
 	"animations": [
 		{
 			"offsets": [
-				604,
-				-19
-			],
-			"indices": [],
-			"fps": 24,
-			"anim": "idle",
-			"loop": false,
-			"name": "BF idle dance"
-		},
-		{
-			"offsets": [
-				604,
-				-19
+				0,
+				0
 			],
 			"indices": [],
 			"fps": 24,
 			"anim": "singLEFT",
 			"loop": false,
-			"name": "BF NOTE LEFT0"
+			"name": "man singLEFT"
 		},
 		{
 			"offsets": [
-				604,
-				-19
-			],
-			"indices": [],
-			"fps": 24,
-			"anim": "singDOWN",
-			"loop": false,
-			"name": "BF NOTE DOWN0"
-		},
-		{
-			"offsets": [
-				604,
-				-19
-			],
-			"indices": [],
-			"fps": 24,
-			"anim": "singUP",
-			"loop": false,
-			"name": "BF NOTE UP0"
-		},
-		{
-			"offsets": [
-				604,
-				-19
+				0,
+				0
 			],
 			"indices": [],
 			"fps": 24,
 			"anim": "singRIGHT",
 			"loop": false,
-			"name": "BF NOTE RIGHT0"
+			"name": "man singRIGHT"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "man singUP"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "man singDOWN"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "man idle"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"image": "characters/man",
 	"position": [
-		-150,
-		-150
+		0,
+		0
 	],
 	"healthicon": "man",
 	"flip_x": false,
