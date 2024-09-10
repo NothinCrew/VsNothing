@@ -19,3 +19,7 @@ export/*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+assets/shared/sounds/intro2.mp3.sfk
+assets/shared/sounds/intro1.mp3.sfk
+assets/shared/sounds/introGo.mp3.sfk
+assets/shared/sounds/intro3.mp3.sfk
