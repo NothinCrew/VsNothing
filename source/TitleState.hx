@@ -89,40 +89,7 @@ class TitleState extends MusicBeatState
 
 		swagShader = new ColorSwap();
 		super.create();
-
-		#if (CHECK_FOR_UPDATES)
-		if(ClientPrefs.checkForUpdates && !closedState) {
-			trace('checking for update');
-			var http = new haxe.Http("https://raw.githubusercontent.com/JordanSantiagoYT/FNF-JS-Engine/main/THECHANGELOG.md");
-			var returnedData:Array<String> = [];
-
-			http.onData = function (data:String)
-			{
-    				var versionEndIndex:Int = data.indexOf(';');
-    				returnedData[0] = data.substring(0, versionEndIndex);
-
-    				// Extract the changelog after the version number
-    				returnedData[1] = data.substring(versionEndIndex + 1, data.length);
-				updateVersion = returnedData[0];
-				var curVersion:String = MainMenuState.psychEngineJSVersion.trim();
-				trace('version online: ' + updateVersion + ', your version: ' + curVersion);
-				if(updateVersion != curVersion) {
-					trace('versions arent matching!');
-					OutdatedState.currChanges = returnedData[1];
-					mustUpdate = true;
-				}
-				if(updateVersion == curVersion) {
-					trace('the versions match!');
-				}
-			}
-
-			http.onError = function (error) {
-				trace('error: $error');
-			}
-
-			http.request();
-		}
-		#end
+		    trace('no checking update LOL PLEASE WORK');
 
 		Highscore.load();
 
