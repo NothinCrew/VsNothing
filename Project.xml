@@ -96,6 +96,7 @@
 		<assets path='example_mods' rename='mods' embed='false'/>
 	</section>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
+	<assets path='art/changelog thing.md' rename='CHANGELOG.md' />
 
 	<assets path="assets/fonts" />
 	<!-- _______________________________ Libraries ______________________________ -->
