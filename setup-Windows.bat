@@ -12,8 +12,8 @@ cls
 title auto-set-id47 - Installing dependencies
 haxelib setup C:\haxelib
 echo haxelib path is C:\haxelib
-haxelib install flixel 5.5.0
-haxelib set flixel 5.5.0
+haxelib install flixel 5.6.2
+haxelib set flixel 5.6.2
 haxelib install flixel-addons 3.2.1
 haxelib set flixel-addons 3.2.1
 haxelib git flxanimate https://github.com/ShadowMario/flxanimate dev
@@ -47,7 +47,7 @@ goto morebullshit
 title auto-set-id47 - Dependencies again yes
 haxelib install flixel-tools
 haxelib run flixel-tools setup
-haxelib set flixel 5.5.0
+haxelib set flixel 5.6.2
 haxelib set flixel-addons 3.2.1
 haxelib set lime 8.0.1
 haxelib set openfl 9.3.2
