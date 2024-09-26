@@ -1,48 +1,48 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
+			"indices": [],
+			"fps": 24,
 			"anim": "singLEFT",
-			"fps": 24,
-			"name": "man singLEFT",
-			"indices": []
+			"loop": false,
+			"name": "singLEFT"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
+			"indices": [],
+			"fps": 24,
 			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "man singRIGHT",
-			"indices": []
+			"loop": false,
+			"name": "singRIGHT"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
+			"indices": [],
+			"fps": 24,
 			"anim": "singUP",
-			"fps": 24,
-			"name": "man singUP",
-			"indices": []
+			"loop": false,
+			"name": "singUP"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "singDOWN",
+			"indices": [],
 			"fps": 24,
-			"name": "man singDOWN",
-			"indices": []
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "singDOWN"
 		},
 		{
 			"offsets": [
@@ -53,7 +53,18 @@
 			"fps": 10,
 			"anim": "idle",
 			"loop": false,
-			"name": "man idle"
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				5,
+				62
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "thumbsup",
+			"loop": false,
+			"name": "thumbsup"
 		}
 	],
 	"vocals_file": "",
@@ -85,7 +96,7 @@
 		0,
 		0
 	],
-	"sing_duration": 4,
+	"sing_duration": 0.999999999999997,
 	"noteskin": null,
 	"winning_colors": [
 		0,
