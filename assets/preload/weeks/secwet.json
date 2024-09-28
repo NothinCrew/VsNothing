@@ -13,14 +13,14 @@
 	"hiddenUntilUnlocked": false,
 	"hideFreeplay": false,
 	"weekBackground": "",
-	"difficulties": "",
+	"difficulties": "Normal",
 	"weekCharacters": [
 		"",
-		"",
+		"bf",
 		""
 	],
 	"storyName": "",
-	"weekName": "",
+	"weekName": "oh no secret",
 	"freeplayColor": [
 		146,
 		113,
