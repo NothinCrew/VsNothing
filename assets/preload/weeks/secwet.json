@@ -5,7 +5,7 @@
 			"bf-pixel",
 			[
 				135,
-				220,
+				200,
 				255
 			]
 		]
@@ -19,8 +19,8 @@
 		"bf",
 		""
 	],
-	"storyName": "",
-	"weekName": "oh no secret",
+	"storyName": "test week",
+	"weekName": "aka your moth",
 	"freeplayColor": [
 		146,
 		113,

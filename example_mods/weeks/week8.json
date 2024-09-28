@@ -3,19 +3,41 @@
 	"difficulties": "",
 	"hideFreeplay": false,
 	"weekBackground": "phillyStreets",
-	"weekBefore": "week7",
 	"freeplayColor": [
 		146,
 		113,
 		253
 	],
+	"weekBefore": "week7",
 	"startUnlocked": true,
-	"hideStoryMode": true,
+	"weekCharacters": [
+		"darnell",
+		"pico-player",
+		"nene"
+	],
 	"songs": [
 		[
 			"darnell",
-			"lit-up",
+			"darnell",
 			"2hot",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"lit-up",
+			"darnell",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"2hot",
+			"darnell",
 			[
 				146,
 				113,
@@ -23,11 +45,7 @@
 			]
 		]
 	],
-	"weekCharacters": [
-		"darnell",
-		"pico-player",
-		"nene"
-	],
-	"hiddenUntilUnlocked": false,
-	"weekName": "Week 8"
+	"hideStoryMode": true,
+	"weekName": "Week 8",
+	"hiddenUntilUnlocked": false
 }
