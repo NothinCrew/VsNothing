@@ -1,0 +1,9 @@
+{
+	"directory": "phillyStreets/",
+	"defaultZoom": 0.8,
+	"isPixelStage": false,
+
+	"boyfriend": [770, 300],
+	"girlfriend": [300,  350],
+	"opponent": [-1.0, 300]
+}
