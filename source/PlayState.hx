@@ -1413,10 +1413,10 @@ class PlayState extends MusicBeatState
 			EngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, OUTLINE,FlxColor.BLACK);
 			EngineWatermark.scrollFactor.set();
 			add(EngineWatermark);
-			EngineWatermark.text = SONG.song + " " + CoolUtil.difficultyString() + " | JSE " + MainMenuState.psychEngineJSVersion;
+			EngineWatermark.text = SONG.song + " " + CoolUtil.difficultyString() + " | Vs Nothing (JSE) " + MainMenuState.psychEngineJSVersion;
 		}
 		if (ClientPrefs.watermarkStyle == 'Forever Engine') {
-			EngineWatermark = new FlxText(0, FlxG.height - 30, 0, "JS Engine v" + MainMenuState.psychEngineJSVersion, 16);
+			EngineWatermark = new FlxText(0, FlxG.height - 30, 0, "Vs Nothing (JSE) v" + MainMenuState.psychEngineJSVersion, 16);
 			EngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, OUTLINE,FlxColor.BLACK);
 			EngineWatermark.updateHitbox();
 			EngineWatermark.x = FlxG.width - EngineWatermark.width - 5;
@@ -2799,6 +2799,23 @@ class PlayState extends MusicBeatState
 
 	public function skipDialogue() {
 		callOnLuas('onSkipDialogue', [dialogueCount]);
+	}
+
+	if (curBeat % 8 == 7
+		&& SONG.notes[Math.floor(curStep / 16)].mustHitSection
+		&& combo > 5
+		&& !SONG.notes[Math.floor(curStep / 16) + 1].mustHitSection)
+	{
+		var animShit:ComboCounter = new ComboCounter(-100, 300, combo);
+		animShit.scrollFactor.set(0.6, 0.6);
+		// add(animShit);
+
+		var frameShit:Float = (1 / 24) * 2; // equals 2 frames in the animation
+
+		new FlxTimer().start(((Conductor.crochet / 1000) * 1.25) - frameShit, function(tmr)
+		{
+			animShit.forceFinish();
+		});
 	}
 
 	var previousFrameTime:Int = 0;
