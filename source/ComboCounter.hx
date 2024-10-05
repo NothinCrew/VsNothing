@@ -83,7 +83,7 @@ class ComboCounter extends FlxTypedSpriteGroup<FlxSprite>
 
 	function setupCombo(daCombo:Int)
 	{
-		FlxG.sound.play(Paths.sound('comboSound'));
+		FlxG.sound.play(Paths.sound('sounds/comboSound'));
 
 		wasComboSetup = true;
 		var loopNum:Int = 0;

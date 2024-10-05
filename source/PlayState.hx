@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxTimer;
 import Section.SwagSection;
 import Song.SwagSong;
 import flixel.FlxObject;
@@ -2801,10 +2802,16 @@ class PlayState extends MusicBeatState
 		callOnLuas('onSkipDialogue', [dialogueCount]);
 	}
 
+	public function NoteComboAdvicer;
+	{
+	trace('note combo: %combo%');
+	trace('song: %song%');
+	}
+
 	if (curBeat % 8 == 7
-		&& SONG.notes[Math.floor(curStep / 16)].mustHitSection
+		&& SONG.notes[Math.floor(curStep / 16)].mustHitSection;
 		&& combo > 5
-		&& !SONG.notes[Math.floor(curStep / 16) + 1].mustHitSection)
+		&& !SONG.notes[Math.floor(curStep / 16) + 1].mustHitSection);
 	{
 		var animShit:ComboCounter = new ComboCounter(-100, 300, combo);
 		animShit.scrollFactor.set(0.6, 0.6);
@@ -6810,22 +6817,20 @@ class PlayState extends MusicBeatState
 			}
 
 			if (curBeat % gfSpeed == 0 && ClientPrefs.iconBounceType == 'Golden Apple') {
-				curBeat % (gfSpeed * 2) == 0 * playbackRate ? {
+				final funny:Float = (healthBar.percent * 0.01) + 0.01;
+
+				//health icon bounce but epic
+				iconP1.setGraphicSize(Std.int(iconP1.width + (50 * (2 + funny))),Std.int(iconP2.height - (25 * (2 + funny))));
+				iconP2.setGraphicSize(Std.int(iconP2.width + (50 * (2 - funny))),Std.int(iconP2.height - (25 * (2 - funny))));
+
 				iconP1.scale.set(1.1, 0.8);
-				iconP2.scale.set(1.1, 1.3);
+				iconP2.scale.set(1.1, 0.8);
 
-				FlxTween.angle(iconP1, -15, 0, Conductor.crochet / 1300 / playbackRate * gfSpeed, {ease: FlxEase.quadOut});
-				FlxTween.angle(iconP2, 15, 0, Conductor.crochet / 1300 / playbackRate * gfSpeed, {ease: FlxEase.quadOut});
-				} : {
-					iconP1.scale.set(1.1, 1.3);
-					iconP2.scale.set(1.1, 0.8);
+				FlxTween.angle(iconP1, -15, 0, Conductor.crochet / 1300 * gfSpeed, {ease: FlxEase.quadOut});
+				FlxTween.angle(iconP2, 15, 0, Conductor.crochet / 1300 * gfSpeed, {ease: FlxEase.quadOut});
 
-					FlxTween.angle(iconP2, -15, 0, Conductor.crochet / 1300 / playbackRate * gfSpeed, {ease: FlxEase.quadOut});
-					FlxTween.angle(iconP1, 15, 0, Conductor.crochet / 1300 / playbackRate * gfSpeed, {ease: FlxEase.quadOut});
-				}
-
-				FlxTween.tween(iconP1, {'scale.x': 1, 'scale.y': 1}, Conductor.crochet / 1250 / playbackRate * gfSpeed, {ease: FlxEase.quadOut});
-				FlxTween.tween(iconP2, {'scale.x': 1, 'scale.y': 1}, Conductor.crochet / 1250 / playbackRate * gfSpeed, {ease: FlxEase.quadOut});
+				FlxTween.tween(iconP1, {'scale.x': 1, 'scale.y': 1}, Conductor.crochet / 1250 * gfSpeed / playbackRate, {ease: FlxEase.quadOut});
+				FlxTween.tween(iconP2, {'scale.x': 1, 'scale.y': 1}, Conductor.crochet / 1250 * gfSpeed / playbackRate, {ease: FlxEase.quadOut});
 			}
 			if (ClientPrefs.iconBounceType == 'VS Steve') {
 				if (curBeat % gfSpeed == 0)
