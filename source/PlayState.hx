@@ -2802,17 +2802,13 @@ class PlayState extends MusicBeatState
 		callOnLuas('onSkipDialogue', [dialogueCount]);
 	}
 
-	public function NoteComboAdvicer;
-	{
-	trace('note combo: %combo%');
-	trace('song: %song%');
-	}
-
-	if (curBeat % 8 == 7
+	// Note combo mechanic
+	if curBeat % 8 == 7
 		&& SONG.notes[Math.floor(curStep / 16)].mustHitSection;
 		&& combo > 5
-		&& !SONG.notes[Math.floor(curStep / 16) + 1].mustHitSection);
+		&& !SONG.notes[Math.floor(curStep / 16) + 1].mustHitSection;
 	{
+		trace('combo streak : %combo% // hope this helps when ya debuggin or shit')
 		var animShit:ComboCounter = new ComboCounter(-100, 300, combo);
 		animShit.scrollFactor.set(0.6, 0.6);
 		// add(animShit);
