@@ -2802,25 +2802,6 @@ class PlayState extends MusicBeatState
 		callOnLuas('onSkipDialogue', [dialogueCount]);
 	}
 
-	// Note combo mechanic
-	if curBeat % 8 == 7
-		&& SONG.notes[Math.floor(curStep / 16)].mustHitSection;
-		&& combo > 5
-		&& !SONG.notes[Math.floor(curStep / 16) + 1].mustHitSection;
-	{
-		trace('combo streak : %combo% // hope this helps when ya debuggin or shit')
-		var animShit:ComboCounter = new ComboCounter(-100, 300, combo);
-		animShit.scrollFactor.set(0.6, 0.6);
-		// add(animShit);
-
-		var frameShit:Float = (1 / 24) * 2; // equals 2 frames in the animation
-
-		new FlxTimer().start(((Conductor.crochet / 1000) * 1.25) - frameShit, function(tmr)
-		{
-			animShit.forceFinish();
-		});
-	}
-
 	var previousFrameTime:Int = 0;
 	var lastReportedPlayheadPosition:Int = 0;
 	var songTime:Float = 0;
@@ -3437,6 +3418,26 @@ class PlayState extends MusicBeatState
 				babyArrow.reloadNote();
 			}
 			*/
+
+				// scary code that will def fail
+				if (curBeat % 8 == 7
+					SONG.notes[Math.floor(curStep / 16)].mustHitSection;
+					combo > 5
+					!SONG.notes[Math.floor(curStep / 16 +1)].mustHitSection)
+				{
+					// Note combo mechanic
+					trace('combo streak : %combo% // hope this helps when ya debuggin or shit')
+					var animShit:ComboCounter = new ComboCounter(-100, 300, combo);
+					animShit.scrollFactor.set(0.6, 0.6);
+					// add(animShit);
+			
+					var frameShit:Float = (1 / 24) * 2; // equals 2 frames in the animation
+			
+					new FlxTimer().start(((Conductor.crochet / 1000) * 1.25) - frameShit, function(tmr)
+					{
+						animShit.forceFinish();
+					});
+				}
 		}
 		strumLine.put();
 	}
