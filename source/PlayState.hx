@@ -1,6 +1,6 @@
 package;
 
-import flixel.FlxTimer;
+import flixel.util.FlxTimer;
 import Section.SwagSection;
 import Song.SwagSong;
 import flixel.FlxObject;
@@ -6634,8 +6634,13 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.camera.zoom += 0.015 * camBopIntensity;
 			camHUD.zoom += 0.03 * camBopIntensity;
-		} /// WOOO YOU CAN NOW MAKE IT AWESOME
-		if (curBeat % 8 == 7 && SONG.notes[Math.floor(curStep / 16)].mustHitSection && combo > 5 && !SONG.notes[Math.floor(curStep / 16) + 1].mustHitSection)
+		}
+
+		// Note combo mechanic :D
+		if (curBeat % 8 == 7
+			&& SONG.notes[Math.floor(curStep / 16)].mustHitSection
+			&& combo > 5
+			&& !SONG.notes[Math.floor(curStep / 16) + 1].mustHitSection)
 		{
 			var animShit:ComboCounter = new ComboCounter(-100, 300, combo);
 			animShit.scrollFactor.set(0.6, 0.6);
@@ -6646,7 +6651,8 @@ class PlayState extends MusicBeatState
 			new FlxTimer().start(((Conductor.crochet / 1000) * 1.25) - frameShit, function(tmr)
 			{
 				animShit.forceFinish();
-		    });
+			});
+		}
 
 		if (camTwist)
 		{
@@ -6694,6 +6700,7 @@ class PlayState extends MusicBeatState
 	}
 
 	var usingBopIntervalEvent = false;
+
 	override function sectionHit()
 	{
 		super.sectionHit();

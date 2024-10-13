@@ -48,6 +48,7 @@ class ComboCounter extends FlxTypedSpriteGroup<FlxSprite>
 		}
 		else
 			effectStuff.animation.play('funny', true, false, 18);
+		FlxG.
 	}
 
 	override function update(elapsed:Float)
@@ -83,7 +84,7 @@ class ComboCounter extends FlxTypedSpriteGroup<FlxSprite>
 
 	function setupCombo(daCombo:Int)
 	{
-		FlxG.sound.play(Paths.sound('sounds/comboSound'));
+		FlxG.sound.play(Paths.sound('comboSound'));
 
 		wasComboSetup = true;
 		var loopNum:Int = 0;
