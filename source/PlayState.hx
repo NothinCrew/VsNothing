@@ -6636,15 +6636,11 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03 * camBopIntensity;
 		}
 
-		// Note combo mechanic :D
-		if (curBeat % 8 == 7
-			&& SONG.notes[Math.floor(curStep / 16)].mustHitSection
-			&& combo > 5
-			&& !SONG.notes[Math.floor(curStep / 16) + 1].mustHitSection)
+		if (curBeat % 8 == 7 && SONG.notes[Math.floor(curStep / 16)].mustHitSection && combo > 5 && !SONG.notes[Math.floor(curStep / 16) + 1].mustHitSection)
 		{
 			var animShit:ComboCounter = new ComboCounter(-100, 300, combo);
 			animShit.scrollFactor.set(0.6, 0.6);
-			// add(animShit);
+			add(animShit); // does it work??
 
 			var frameShit:Float = (1 / 24) * 2; // equals 2 frames in the animation
 
